@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os
 import random
+import platform
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -99,5 +100,8 @@ def accept_defeat():
         return jsonify({'game_status': 'inactive', 'status': 'lost', 'secret_code': session['game']['secret_code']})
     return jsonify({'error': 'No game session found'}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+if __name__ == "__main__":
+    if platform.system() == 'Android':
+        from android.permissions import Permission, request_permissions
+        request_permissions([Permission.INTERNET, Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+    app.run(debug=False, port=8080)
