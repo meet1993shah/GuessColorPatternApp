@@ -40,11 +40,13 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.game_status === "inactive") {
                     if (response.status === "won") {
-                        alert("Congratulations! You won!");
+                        triggerConfetti(); // Show ribbons on win
+                        displayWinMessage(); // Display win message
                     } else {
-                        alert("You lost! The secret code was: " + response.secret_code.join(", "));
+                        triggerRainEffect(); // Show rain effect on loss
+                        displayLossMessage(response.secret_code); // Display loss message and secret code
                     }
-                    window.location.href = "/";
+                    return;
                 } else {
                     updateGuessHistory(response.grid_history);
                     resetGuess();
@@ -82,6 +84,70 @@ $(document).ready(function() {
         });
     }
 
+    // Trigger confetti (ribbons) effect on win
+    function triggerConfetti() {
+        let duration = 5000;
+        let end = Date.now() + duration;
+
+        function frame() {
+            confetti({
+                particleCount: 5,
+                spread: 100,
+                startVelocity: 40,
+                origin: { x: Math.random(), y: Math.random() }
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }
+
+        frame();
+    }
+
+    // Trigger rain effect on loss
+    function triggerRainEffect() {
+        let rainDuration = 5000;
+        let endTime = Date.now() + rainDuration;
+        
+        let rainInterval = setInterval(function() {
+            if (Date.now() > endTime) {
+                clearInterval(rainInterval);
+            } else {
+                const rainDrop = $('<div class="rain-drop">🌧️</div>');
+                rainDrop.css({
+                    left: `${Math.random() * 100}%`,
+                    animation: 'fall 1s linear infinite'
+                });
+                $('body').append(rainDrop);
+                setTimeout(() => rainDrop.remove(), 1000);
+            }
+        }, 200);
+    }
+
+    // Display win message
+    function displayWinMessage() {
+        let message = $("<div class='win-message'>You won! 🎉</div>");
+        $("body").prepend(message);
+        setTimeout(() => message.fadeOut(), 3000); // Hide after 3 seconds
+    }
+
+    // Display loss message and secret code
+    function displayLossMessage(secretCode) {
+        let message = $("<div class='loss-message'>You lost! The secret code was: </div>");
+        let codeDisplay = $("<div id='secret-code'></div>");
+        secretCode.forEach(color => {
+            codeDisplay.append(`<div class='guess-slot ${color}'></div>`);
+        });
+
+        $("body").prepend(message);
+        $("body").prepend(codeDisplay);
+        setTimeout(() => {
+            message.fadeOut();
+            codeDisplay.fadeOut();
+        }, 5000); // Hide after 5 seconds
+    }
+
     // Restart game
     $("#restart-game").click(function() {
         window.location.href = "/restart";
@@ -90,7 +156,8 @@ $(document).ready(function() {
     // Accept defeat
     $("#accept-defeat").click(function() {
         $.post("/accept_defeat", function(response) {
-            alert("You lost! The secret code was: " + response.secret_code.join(", "));
+            alert("You lost! The secret code was: ");
+            displaySecretCode(response.secret_code); // Display secret code with colors
             window.location.href = "/";
         });
     });

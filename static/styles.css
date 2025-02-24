@@ -129,5 +129,92 @@ button:hover {
 
 #guess-history .guess-row > .feedback {
     margin-left: 20px;
-    margin-top: 0; /* Remove any extra spacing */
+    margin-top: 0;
+}
+
+#secret-code {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sad-emoji {
+    font-size: 100px;
+    margin-top: 20px;
+    color: #ff5722;
+}
+
+.win-message {
+    font-size: 30px;
+    color: #ffcc00;
+    font-weight: bold;
+    animation: fadeIn 1s ease;
+}
+
+.loss-message {
+    font-size: 25px;
+    color: #ff5722;
+    font-weight: bold;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.confetti {
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: confetti-animation 3s infinite;
+}
+
+@keyframes confetti-animation {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(270deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.rain-drop {
+    font-size: 30px;
+    position: absolute;
+    top: -30px;
+    animation: fall 3s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% {
+        top: -30px;
+        opacity: 1;
+    }
+    50% {
+        top: 100%;
+        opacity: 0.7;
+    }
+    100% {
+        top: -30px;
+        opacity: 0;
+    }
 }
