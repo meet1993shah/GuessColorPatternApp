@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Color</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Guess the Color</h1>
+
+    <form id="game-setup" method="POST" action="/">
+        <label for="player_name">Player Name:</label>
+        <input type="text" id="player_name" name="player_name" required><br><br>
+
+        <label for="code_length">Code Length:</label>
+        <select id="code_length" name="code_length">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
+
+        <button type="submit">Start Game</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/index.js"></script>
+</body>
+</html>

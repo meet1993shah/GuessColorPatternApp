@@ -1,0 +1,101 @@
+body {
+    background-color: #1e1e1e;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #ffcc00;
+}
+
+button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff784e;
+}
+
+#color-options {
+    margin: 20px;
+}
+
+.color-picker {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.color-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.red { background-color: red; }
+.blue { background-color: blue; }
+.green { background-color: green; }
+.yellow { background-color: yellow; }
+.orange { background-color: orange; }
+.purple { background-color: purple; }
+
+#guess-area {
+    margin: 20px 0;
+}
+
+#current-guess {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.guess-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.guess-slot {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid white;
+    display: inline-block;
+}
+
+.empty {
+    background-color: gray;
+}
+
+.feedback {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.pin {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.black {
+    background-color: black;
+}
+
+.white {
+    background-color: white;
+    border: 1px solid black;
+}

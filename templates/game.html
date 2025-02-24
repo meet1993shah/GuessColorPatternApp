@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Color</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Guess the Color, <span id="player-name"></span>!</h1>
+    
+    <div id="color-options">
+        <p>Pick colors for your guess:</p>
+        <div class="color-picker">
+            <div class="color-box red" data-color="red"></div>
+            <div class="color-box blue" data-color="blue"></div>
+            <div class="color-box green" data-color="green"></div>
+            <div class="color-box yellow" data-color="yellow"></div>
+            <div class="color-box orange" data-color="orange"></div>
+            <div class="color-box purple" data-color="purple"></div>
+        </div>
+    </div>
+
+    <div id="guess-area">
+        <p>Your Guess:</p>
+        <div id="current-guess" class="guess-row"></div>
+        <button id="submit-guess">Submit Guess</button>
+    </div>
+
+    <h2>Guess History</h2>
+    <div id="guess-history"></div>
+
+    <button id="restart-game">Restart Game</button>
+    <button id="accept-defeat">Accept Defeat</button>
+
+    <script src="/static/game.js"></script>
+</body>
+</html>
