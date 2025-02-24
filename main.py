@@ -21,16 +21,18 @@ class GuessColor:
 
     def get_feedback(self, guess):
         if self.guesses_left <= 0:
-            return None, None  # No guesses allowed
+            return None, None
 
         bulls, cows = 0, 0
+        guess_map = self.generate_map(guess)
+        secret_map = self.generate_map(self.secret_code)
+        
         for i in range(self.code_length):
             if guess[i] == self.secret_code[i]:
                 bulls += 1
-                cows -= 1
+                guess_map[guess[i]] -= 1
+                secret_map[self.secret_code[i]] -= 1
 
-        guess_map = self.generate_map(guess)
-        secret_map = self.generate_map(self.secret_code)
         for color in self.colors:
             cows += min(guess_map[color], secret_map[color])
 
